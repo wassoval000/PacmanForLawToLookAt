@@ -1,16 +1,27 @@
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Toolkit;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import java.awt.Graphics2D;
+import java.io.File;
 
-public class ImageDraw extends JComponent{
+public class ImageDraw {
+
     public void paint(Graphics g){
-        Graphics2D g2 = (Graphics2D)g;
 
-        Image pac0 = Toolkit.getDefaultToolkit().getImage("pac0.jpg");
-        g2.drawImage(pac0, 12, 12, this);
-        g2.finalize();
     }
+
+    public static BufferedImage GetPic(String file){
+        try{
+            return ImageIO.read(new File(file));
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

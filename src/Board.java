@@ -39,8 +39,10 @@ public class Board extends JPanel implements ActionListener{
         sprites.add(new Pac(Color.PINK, 95, DrawMap.col-140, 18));
         sprites.add(new Pac(Color.PINK, 95, DrawMap.col-240, 18));
         sprites.add(new Pac(Color.PINK, DrawMap.rows-95, DrawMap.col-50, 18));
-        sprites.add(new Pac(Color.PINK, DrawMap.rows-95, DrawMap.col-140, 18));
-        sprites.add(new Pac(Color.PINK, DrawMap.rows-95, DrawMap.col-240, 18));
+        sprites.add(new Pac(Color.PINK, DrawMap.rows-95, DrawMap.col-100, 18));
+        sprites.add(new Pac(Color.PINK, DrawMap.rows-95, DrawMap.col-200, 18));
+
+        sprites.add(new Man(Color.BLACK, DrawMap.rows/2,DrawMap.col/2-120, 30, 30));
 
     }
 
@@ -74,8 +76,6 @@ public class Board extends JPanel implements ActionListener{
         for(int i = 0; i < sprites.size(); i++){
             sprites.get(i).paint(g);
         }
-
-        System.out.println(sprites.size());
 
     }
 
