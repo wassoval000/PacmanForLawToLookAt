@@ -11,6 +11,7 @@ public class Board extends JPanel implements ActionListener{
     static List<Sprite> sprites = new ArrayList<>();
     static int x;
     static int y;
+    static boolean hit = false;
 
     public static void setup(){
 
@@ -44,6 +45,11 @@ public class Board extends JPanel implements ActionListener{
 
         sprites.add(new Man(Color.BLACK, DrawMap.rows/2,DrawMap.col/2-120, 30, 30));
 
+        sprites.add(new Ghost(Color.BLACK, DrawMap.rows/2, DrawMap.col/2, 30, 30));
+        sprites.add(new Ghost1(Color.BLACK, DrawMap.rows/2-40, DrawMap.col/2, 40, 40));
+        sprites.add(new Ghost2(Color.BLACK, DrawMap.rows/2+40, DrawMap.col/2, 30, 30));
+        sprites.add(new Ghost3(Color.BLACK, DrawMap.rows/2, DrawMap.col/2-40, 40, 40));
+
     }
 
     public Board(){
@@ -63,8 +69,7 @@ public class Board extends JPanel implements ActionListener{
         for(int i = 0; i < DrawMap.col; i++){
             for(int j = 0; j < DrawMap.rows; j++){
                 if(DrawMap.arr[j][i] == 1){
-                    g.setColor(Color.BLUE);
-                    g.fillRect(j, i, 1, 1);
+                    sprites.add(new Walls(Color.BLUE, j, i, 1, 1));
                 }
                 else if(DrawMap.arr[j][i] == 0){
                     g.setColor(Color.BLACK);
@@ -75,12 +80,38 @@ public class Board extends JPanel implements ActionListener{
 
         for(int i = 0; i < sprites.size(); i++){
             sprites.get(i).paint(g);
+            sprites.get(i).move(getHeight(),getWidth());
+        }
+
+    }
+
+    public void checkCollisions(){
+
+        for (int i = 0; i < sprites.size(); i++) {
+            for (int j = 0; j < sprites.size(); j++) {
+                if (i != j) {
+                    if (sprites.get(i).getBounds().intersects(sprites.get(j).getBounds())) {
+                        if(sprites.get(i) instanceof Man && sprites.get(j) instanceof Pac){
+                            sprites.remove(j);
+                            break;
+                        }
+                        break;
+                    }
+                }
+            }
         }
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        for(int i = 0; i < sprites.size(); i++){
+
+            sprites.get(i).move(getHeight(),getWidth());
+
+        }
+        //checkCollisions();
         repaint();
+
     }
 }

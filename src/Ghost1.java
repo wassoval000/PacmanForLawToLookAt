@@ -1,41 +1,38 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Ghost extends Sprite{
+public class Ghost1 extends Sprite{
 
-    public Ghost(Color color, int x, int y, int width, int height){
+    public Ghost1(Color color, int x, int y, int width, int height){
 
         super(color, x, y, width, height);
 
     }
 
     public void paint(Graphics g){
-
-        BufferedImage img=ImageDraw.GetPic("ProjectImages/Pinky.png");
-        g.drawImage(img.getScaledInstance(width,height, Image.SCALE_SMOOTH),x,y,null);
-
+        BufferedImage img1=ImageDraw.GetPic("ProjectImages/blinky.jpg");
+        g.drawImage(img1.getScaledInstance(width,height, Image.SCALE_SMOOTH),x,y,null);
     }
 
     public void move(int boardHeight, int boardWidth){
-
-        if(System.currentTimeMillis() == 3000){
+        if(System.currentTimeMillis() == 7000){
             if(Game.isLeftPressed()){
                 if(x > 0 || x < boardWidth){
-                        x -= 11;
+                        x -= 10;
                 }
             }
             else if(Game.isRightPressed()){
                 if(x > (boardWidth/3.0) || x < boardWidth-(boardWidth/3.0)){
-                        x += 11;
+                        x += 10;
                 }
 
             }
             else if(Game.isUpPressed()){
-                    y -= 11;
+                    y -= 10;
 
             }
             else if(Game.isDownPressed()){
-                    y += 11;
+                    y += 10;
 
             }
         }

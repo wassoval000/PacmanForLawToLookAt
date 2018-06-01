@@ -29,10 +29,10 @@ public class Game extends JFrame {
                     rightPressed = true;
                 }
                 else if(e.getKeyCode()==KeyEvent.VK_DOWN){
-                 downPressed = true;
+                    downPressed = true;
                 }
                 else if(e.getKeyCode()==KeyEvent.VK_UP){
-                 upPressed = true;
+                    upPressed = true;
                 }
 
             }

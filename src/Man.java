@@ -12,27 +12,29 @@ public class Man extends Sprite{
 
     public void move(int boardHeight, int boardWidth){
 
+        int manLoc = DrawMap.arr[x][y];
+
         if(Game.isLeftPressed()){
-            if(DrawMap.arr[x][y] != 1){
-                x -= 5;
+            DrawMap.arr[x][y] = manLoc;
+            if(x > 0 || x < boardWidth){
+                x-=8;
             }
         }
         else if(Game.isRightPressed()){
-            if(DrawMap.arr[x][y] != 1){
-                x += 5;
+            DrawMap.arr[x][y] = manLoc;
+            if(x > (boardWidth/3.0) || x < boardWidth-(boardWidth/3.0)){
+                x += 8;
             }
 
         }
         else if(Game.isUpPressed()){
-            if(DrawMap.arr[x][y] != 1){
-                y -= 5;
-            }
+            DrawMap.arr[x][y] = manLoc;
+            y-=8;
 
         }
         else if(Game.isDownPressed()){
-            if(DrawMap.arr[x][y] != 1){
-                y += 5;
-            }
+            DrawMap.arr[x][y] = manLoc;
+            y+=8;
 
         }
 
